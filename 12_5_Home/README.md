@@ -8,7 +8,46 @@ new Date()
 .getMont() + 1
 # Home 에서 useContext 로 프롭스 데이터 공급받기.
 
+## App.jsx에서
+```
+import {userReducer, useRef, createContext} from 'react';
 
+export const DiaryStateContext = createContext(); 
+export const DiaryDispatchContext = createContext(); 
+
+function App() {
+  //FIXME:
+  const [data, dispatch] = useReducer(reducer, mockData); // (reducer, 초기값)
+  const idRef = useRef(2);
+
+```
+
+## Home.jsx
+```
+import { DiaryStateContext, DiaryDispatchContext } from "../App";
+
+const getMonthlyData = (pivotDate, data) => {
+.........
+  return data.filter((item)=>item.createdDate >= beginTime && item.createdDate <= endTime)
+}
+
+const Home = () => {
+  const monthlyData = getMonthlyData(pivotDate, data);
+
+  return
+        <DiaryList data={monthlyData}/>
+```
+
+## DiaryList
+```
+function DiaryList({data}) {
+  return (
+      <div>
+       {data.map((item) => (
+      <DiaryItem key={item.id} {...item}/>
+      ))}
+      </div>
+```
 public 에 css font, image
 public dir에 저장하면, import 없이 사용
       <img src={"/emotion1.png"} />

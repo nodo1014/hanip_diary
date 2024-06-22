@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, {useReducer, useState, useEffect, useRef, useContext, createContext} from "react";
+import {useReducer, useRef, createContext} from "react";
 // import "./App.css";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
@@ -12,14 +12,11 @@ import getEmotionImage from "./util/get-emotion-image";
 import Button from "./components/Button.jsx";
 import Header from "./components/Header.jsx";
 
-// 1. "/" : Home 모든 일기 조회
-// 2. "/new" : 새로운 일기
-// 3. "/diary" : 상세 조
 const mockData = [
   {
     id: 1,
     createdDate: new Date("2024-06-23").getTime(),
-    emotionId : 1,
+    emotionId : 3,
     content: "1번 일기 컨텐트",
   },
   {
@@ -31,7 +28,7 @@ const mockData = [
   {
     id: 3,
     createdDate: new Date("2024-05-12").getTime(),
-    emotionId : 3,
+    emotionId : 5,
     content: "2번 일기 컨텐트",
   },
 ];
@@ -51,7 +48,7 @@ function reducer(state, action) {
   return state; //컴포넌트가 지닐 새로운 상태를 반환.
 }
 
-//TODO: useContext : 함수를 App 의 하위 모든 컴포넌트에 공급할 수 있도록, useContext
+//TODO: useContext : 함수를 App 의 하위 모든 컴포넌트에 공급. useContext
 export const DiaryStateContext = createContext(); 
 export const DiaryDispatchContext = createContext(); 
 // 이후, <Routes>를 <DiaryStateContext.Provider>로 감싸기
@@ -91,15 +88,9 @@ function App() {
       id,
     })
   }
-  const nav = useNavigate();
-  const onClickButton = () => nav("/new")
   
   return (
     <>
-    {/* <button onClick={()=>{onCreate(new Date().getTime(),1,"새일기에요")}}>새 일기</button>
-    <button onClick={()=>{onUpdate(1,new Date().getTime(),1,"1 수정되써염")}}>onUpdate</button>
-    <button onClick={()=>{onDelete(2)}}>onDelete id:0</button> */}
-
     <DiaryStateContext.Provider value={data}>
       <DiaryDispatchContext.Provider value={{onCreate,onUpdate,onDelete}}>
         <Routes>
