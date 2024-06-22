@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, {useReducer, useState, useEffect, useRef, useContext, createContext} from "react";
-import "./App.css";
+// import "./App.css";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Diary from "./pages/Diary";
@@ -90,36 +90,10 @@ function App() {
   
   return (
     <>
-    <button onClick={()=>{onCreate(new Date().getTime(),1,"새일기에요")}}>새 일기</button>
+    {/* <button onClick={()=>{onCreate(new Date().getTime(),1,"새일기에요")}}>새 일기</button>
     <button onClick={()=>{onUpdate(1,new Date().getTime(),1,"1 수정되써염")}}>onUpdate</button>
-    <button onClick={()=>{onDelete(2)}}>onDelete id:0</button>
+    <button onClick={()=>{onDelete(2)}}>onDelete id:0</button> */}
 
-
-      <Header
-       title={"헤더"}
-       leftChild={<Button text={"Left"}/>}
-       rightChild={<Button text={"right"} />}
-       />
-    <div>
-      public dir에 저장. import 없이 사용
-
-    </div>
-    <div>
-  
-      <img src={getEmotionImage(1)} />
-      <img src={getEmotionImage(2)} />
-      <img src={getEmotionImage(3)} />
-      <img src={getEmotionImage(4)} />
-      <img src={getEmotionImage(5)} />
-
-    </div>
-    <div>
-      <Link to={"/"}>Home</Link>
-      <Link to={"/new"}>new</Link>
-      <Link to={"/diary"}>diary</Link>
-      <a href="/">a href Home</a>
-    </div>
-    <button onClick={onClickButton}>useNavigate</button>
     <DiaryStateContext.Provider value={data}>
       <DiaryDispatchContext.Provider value={{onCreate,onUpdate,onDelete}}>
         <Routes>
