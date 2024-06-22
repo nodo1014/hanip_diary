@@ -59,12 +59,15 @@ function App() {
 ```
 import { DiaryStateContext, DiaryDispatchContext } from "../App";
 
+  // Home 컴포넌트 밖에서 getMonthlyData 함수 작성.
 const getMonthlyData = (pivotDate, data) => {
 .........
   return data.filter((item)=>item.createdDate >= beginTime && item.createdDate <= endTime)
 }
 
 const Home = () => {
+  const data = useContext(DiaryStateContext); // useContext 로 App컴포넌트 data 받기.
+  //useContext() 개발자 도구-컴포넌트-Home 확인.
   const monthlyData = getMonthlyData(pivotDate, data);
 
   return
