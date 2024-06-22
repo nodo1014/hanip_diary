@@ -1,5 +1,12 @@
 # npm init vite .
 npm run dev
+
+# 12-11 Home 구현하기
+HOME title 부분 : 2024년6월(pivotDate) 을 state 로 저장  
+new Date()
+.getFullYear
+.getMont() + 1
+
 public 에 css font, image
 public dir에 저장하면, import 없이 사용
       <img src={"/emotion1.png"} />
