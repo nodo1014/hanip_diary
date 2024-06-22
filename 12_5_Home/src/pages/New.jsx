@@ -2,7 +2,7 @@
 
 const New = () => {
   return (
-    <div>NEw.js</div>
+    <div>새 일기 NEw.js</div>
   )
 };
 export default New;
