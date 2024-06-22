@@ -1,5 +1,6 @@
-import Button from "./Button";
 import "./DiaryList.css"
+import Button from "./Button";
+import DiaryItem from "./DiaryItem";
 
 function DiaryList() {
   return (
@@ -11,7 +12,9 @@ function DiaryList() {
         </select>
         <Button text={"새 글쓰기"} type={"POSITIVE"} onClick={()=>alert("으잉")}/>
       </div>
-      <div className="list_wrapper"></div>
+      <div className="list_wrapper">
+        <DiaryItem />
+      </div>
     </div>
   );
 }
