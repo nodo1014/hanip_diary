@@ -1,1 +1,0 @@
-# hanip_diary

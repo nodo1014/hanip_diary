@@ -1,0 +1,28 @@
+.Header {
+    display: flex;
+    align-items: center;
+    /* 상하 20, 좌우 0 */
+    padding: 20px 0px;
+    border-bottom: 1px solid rgb(226,226,226);
+}
+
+/* Header클래스 바로 아래 div. 즉, header_center, _left, _right 에 flex*/
+.Header > div {
+    display: flex;
+}
+/* Header클래스 후손 .header_center */
+.Header .header_center {
+    width: 50%;
+    font-size: 25px;
+    justify-content: center;
+}
+
+.Header .header_left {
+    width: 25%;
+    justify-content: flex-start;
+}
+
+.Header .header_right {
+    width: 25%;
+    justify-content: flex-end;
+}
