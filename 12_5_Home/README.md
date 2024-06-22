@@ -6,6 +6,8 @@ HOME title 부분 : 2024년6월(pivotDate) 을 state 로 저장
 new Date()
 .getFullYear
 .getMont() + 1
+# Home 에서 useContext 로 프롭스 데이터 공급받기.
+
 
 public 에 css font, image
 public dir에 저장하면, import 없이 사용

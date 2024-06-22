@@ -2,7 +2,7 @@ import "./DiaryList.css"
 import Button from "./Button";
 import DiaryItem from "./DiaryItem";
 
-function DiaryList() {
+function DiaryList({data}) {
   return (
     <div className="DiaryList">
       <div className="menu_bar">
@@ -13,7 +13,9 @@ function DiaryList() {
         <Button text={"새 글쓰기"} type={"POSITIVE"} onClick={()=>alert("으잉")}/>
       </div>
       <div className="list_wrapper">
-        <DiaryItem />
+        {data.map((item) => (
+          <DiaryItem key={item.id} {...item}/>
+        ))}
       </div>
     </div>
   );

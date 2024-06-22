@@ -18,14 +18,20 @@ import Header from "./components/Header.jsx";
 const mockData = [
   {
     id: 1,
-    createdDate: new Date().getTime(),
+    createdDate: new Date("2024-06-23").getTime(),
     emotionId : 1,
     content: "1번 일기 컨텐트",
   },
   {
     id: 2,
-    createdDate: new Date().getTime(),
+    createdDate: new Date("2024-06-22").getTime(),
     emotionId : 2,
+    content: "2번 일기 컨텐트",
+  },
+  {
+    id: 3,
+    createdDate: new Date("2024-05-12").getTime(),
+    emotionId : 3,
     content: "2번 일기 컨텐트",
   },
 ];
@@ -46,8 +52,8 @@ function reducer(state, action) {
 }
 
 //TODO: useContext : 함수를 App 의 하위 모든 컴포넌트에 공급할 수 있도록, useContext
-const DiaryStateContext = createContext(); 
-const DiaryDispatchContext = createContext(); 
+export const DiaryStateContext = createContext(); 
+export const DiaryDispatchContext = createContext(); 
 // 이후, <Routes>를 <DiaryStateContext.Provider>로 감싸기
 
 function App() {
