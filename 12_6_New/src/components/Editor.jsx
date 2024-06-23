@@ -41,7 +41,7 @@ const getStringedDate = (targetDate) => {
     return `${year}-${month}-${date}`;
 }
 
-function Editor() {
+function Editor({onSubmit}) {
     // FIXME: 마우스 오버시, 이모션 배경색 변경! EmotionItem.jsx 에 isSelected(true/false) 프롭스 보내서, true 면, 배경색 변경 클래스 추가 
 // 오늘의 날짜 input 처리하기 : Date 객체 <--> String
     const [input, setInput] = useState({
@@ -64,6 +64,9 @@ function Editor() {
             [name] : value,
         })
     }
+    const onClickSubmit = () => {
+        onSubmit(input);
+    };
 
   return (
     <div className="Editor">
@@ -107,7 +110,7 @@ function Editor() {
 
       <section className="button_section">
         <Button text={"취소"} type="NEGATIVE" onClick={() => nav(-1)} />
-        <Button text={"저장"} type="POSITIVE" onClick={() => alert("저장")} />
+        <Button text={"저장"} type="POSITIVE" onClick={onClickSubmit} />
       </section>
     </div>
   );
