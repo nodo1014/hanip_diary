@@ -17,7 +17,7 @@ function DiaryList({data}) {
       if (sortType === 'oldest') {
         return Number(a.createdDate) - Number(b.createdDate)
       } else {
-        return (b.createdDate) - (a.createddDate)
+        return (b.createdDate) - (a.createdDate)
       }
     })
   }

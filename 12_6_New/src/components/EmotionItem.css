@@ -1,0 +1,12 @@
+.EmotionItem {
+    background-color: rgb(236,236,236);
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.emotion_img {
+    width: 50%;
+    margin-bottom: 10px;
+}
