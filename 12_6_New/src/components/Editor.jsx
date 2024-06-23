@@ -1,6 +1,7 @@
 import Button from "./Button";
 import EmotionItem from "./EmotionItem";
 import "./Editor.css";
+import { useState } from "react";
 
 const emotionList = [
     {
@@ -24,24 +25,70 @@ const emotionList = [
         emotionName: "쓋떠뻑"
     },
 ]
+// input date 에 표시하기 위해서, Date객체 : (targetDate) 를 String 으로 x
+const getStringedDate = (targetDate) => {
+    // targetDate객체 -> "2024-12-12" String으로.
+    let year = targetDate.getFullYear();
+    let month = targetDate.getMonth()+1;
+    let date = targetDate.getDate();
+    if (month < 10) {
+        month = `0${month}`;
+    }
+    if (date < 10) {
+        date = `0${date}`;
+    }
+    console.log(`getSD: ${year}-${month}-${date}`);
+    return `${year}-${month}-${date}`;
+}
 
 function Editor() {
     // FIXME: 마우스 오버시, 이모션 배경색 변경! EmotionItem.jsx 에 isSelected(true/false) 프롭스 보내서, true 면, 배경색 변경 클래스 추가 
     const emotionId =5;
+// 오늘의 날짜 input 처리하기 : Date 객체 <--> String
+    const [input, setInput] = useState({
+        createdDate : new Date(),
+        emotionId : 3,
+        content : ""
+    });
+    // 달력 날짜 인풋에서, 날짜를 변경하면 setInput() 으로 createdDate 저장.
+    const onChangeInput = (e) => {
+        console.log(e.target.name);
+        console.log(e.target.value);
+
+        let name = e.target.name;
+        let value = e.target.value;
+        if (name === "createdDate") {
+            value = new Date(value); // string을 date 객체로 변화.
+        }
+
+        setInput({
+            ...input,
+            [name] : value,
+        })
+    }
+
   return (
     <div className="Editor">
       <section className="date_section">
         <h4>오늘의 날짜</h4>
-        <input type="date" />
+        <input
+          name="createdDate"
+          onChange={onChangeInput}
+          value={getStringedDate(input.createdDate)}
+          type="date"
+        />
       </section>
 
       <section className="emotion_section">
         <h4>오늘의 기부니. emotion</h4>
         <div className="emotion_list_wrapper">
-          {emotionList.map((item) =>(
-            <EmotionItem key={item.emotionId} {...item} isSelected={item.emotionId === emotionId} /> 
-            ))
-            }
+          {emotionList.map((item) => (
+            <EmotionItem
+              key={item.emotionId}
+              {...item}
+              isSelected={item.emotionId === emotionId}
+            />
+          ))}
         </div>
       </section>
 
