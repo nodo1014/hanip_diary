@@ -5,7 +5,7 @@
 }
 
 /* 날짜 input: 회색, border 처리( 선X, radius) padding */
-.Editor > section > input {
+.Editor > section > input, textarea{
     background-color: rgb(236, 236, 236);
     border: none;
     border-radius: 5px;
@@ -13,9 +13,12 @@
     font-size: 20px;;
 }
 
-.button_section {
-    display: flex;
-    justify-content: space-between;
+.Editor > section > textarea {
+    padding: 20px;
+    width: 100%;
+    min-height: 200px;
+    resize: vertical;
+    box-sizing: border-box;
 }
 
 .emotion_list_wrapper {
@@ -23,4 +26,8 @@
     justify-content: space-around;
     gap: 2%;
     /* 이모션 크기 줄이기? EmotionItem.css에서 조정 */
+}
+.button_section {
+    display: flex;
+    justify-content: space-between;
 }

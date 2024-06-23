@@ -5,7 +5,26 @@
     border-radius: 5px;
     cursor: pointer;
 }
-
+.EmotionItem_on_1 {
+    background-color: gray;
+    color: white;
+}
+.EmotionItem_on_2 {
+    background-color: gray;
+    color: white;
+}
+.EmotionItem_on_3 {
+    background-color: gray;
+    color: white;
+}
+.EmotionItem_on_4 {
+    background-color: gray;
+    color: white;
+}
+.EmotionItem_on_5 {
+    background-color: gray;
+    color: white;
+}
 .emotion_img {
     width: 50%;
     margin-bottom: 10px;
