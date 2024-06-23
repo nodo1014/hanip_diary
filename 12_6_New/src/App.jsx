@@ -42,8 +42,8 @@ function reducer(state, action) {
       String(item.id) === String(action.data.id) ? action.data : item
       );
     case "DELETE":
-      return state.filter((item)=>item.id !== action.id);
-      
+      return state.filter((item)=>String(item.id) !== String(action.targetId)
+    );  
   }
   return state; //컴포넌트가 지닐 새로운 상태를 반환.
 }
@@ -56,7 +56,7 @@ export const DiaryDispatchContext = createContext();
 function App() {
   //FIXME:
   const [data, dispatch] = useReducer(reducer, mockData); // 
-  const idRef = useRef(2);
+  const idRef = useRef(4); //초기값 (3)
   // dispatch : 액션을 발생시키는 "함수" dispatch({type: , data:});
   // mockData, [] : 초기값initialState.data 배열
 
@@ -82,17 +82,23 @@ function App() {
       },
     });
   }
-  const onDelete = (id) => {
+  const onDelete = (targetId) => {
     dispatch({
       type:"DELETE",
-      id,
+      targetId,
     })
   }
   
   return (
     <>
     <DiaryStateContext.Provider value={data}>
-      <DiaryDispatchContext.Provider value={{onCreate,onUpdate,onDelete}}>
+      <DiaryDispatchContext.Provider
+       value={{
+        onCreate,
+        onUpdate,
+        onDelete
+        }}
+        >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/new" element={<New />} />

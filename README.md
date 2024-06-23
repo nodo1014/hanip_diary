@@ -1,5 +1,7 @@
 # npm init vite .
 npm run dev
+# 원본 깃허브 소스
+https://github.com/winterlood/onebite-react-v2/tree/main
 # useReducer
 ```
 function reducer(state, action) {
@@ -12,7 +14,7 @@ function reducer(state, action) {
       String(item.id) === String(action.data.id) ? action.data : item
       );
     case "DELETE":
-      return state.filter((item)=>item.id !== action.id);
+      return state.filter((item)=>String(item.id) !== String(action.id));
       
   }
   return state; //컴포넌트가 지닐 새로운 상태를 반환.
