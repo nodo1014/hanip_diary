@@ -4,22 +4,8 @@ import "./Editor.css";
 import Button from "./Button";
 import EmotionItem from "./EmotionItem";
 import {emotionList} from "../util/constants"
-
+import getStringedDate from "../util/getStringedDate";
 // input date 에 표시하기 위해서, Date객체 : (targetDate) 를 String 으로 x
-const getStringedDate = (targetDate) => {
-    // targetDate객체 -> "2024-12-12" String으로.
-    let year = targetDate.getFullYear();
-    let month = targetDate.getMonth()+1;
-    let date = targetDate.getDate();
-    if (month < 10) {
-        month = `0${month}`;
-    }
-    if (date < 10) {
-        date = `0${date}`;
-    }
-    console.log(`getSD: ${year}-${month}-${date}`);
-    return `${year}-${month}-${date}`;
-}
 
 function Editor({initData, onSubmit}) {
     // FIXME: 마우스 오버시, 이모션 배경색 변경! EmotionItem.jsx 에 isSelected(true/false) 프롭스 보내서, true 면, 배경색 변경 클래스 추가 

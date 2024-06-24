@@ -5,27 +5,14 @@ import Editor from "../components/Editor";
 import Button from "../components/Button";
 import {useContext, useEffect, useState} from "react";
 import { DiaryDispatchContext, DiaryStateContext } from "../App";
+import useDiary from "../hooks/useDiary";
 
 const Edit = () => {
  const params = useParams();
  const nav = useNavigate();
+ //TODO: 현재 data 불러와서(useContext), data.find 로 스테이트에 저장 -> useContext로 onUpdate 사용.
  const {onDelete, onUpdate} = useContext(DiaryDispatchContext);
- const data = useContext(DiaryStateContext);
- const [curDiaryItem, setCurDiaryItem] = useState();
-
-//  useEffect(() => {}, [params.id, data]) //params.id 나 data state가 바뀐 경우 실행.
-useEffect(() => {
-    const currentDiaryItem = data.find(
-      (item)=>String(item.id) === String(params.id)
-      );
-    if(!currentDiaryItem) {
-      window.alert("존재하지 않는 일기입니다. ")
-      nav("/", {replace: true}); //BrowserRoute 등 컴포넌트가 마운트 되기 전, return 전에 호출.-> useNavigate
-    }
-    // return currentDiaryItem; // 리턴해도 저장할 곳이 없다. --> state 로 저장.
-    setCurDiaryItem(currentDiaryItem);
-    console.log(`Edit.jsx: useEffect() currentDiaryItem 을 현재 id Item 객체로`)
-},[params.id, data]);
+ const curDiaryItem = useDiary(params.id);
  
  const onClickDelete = () => {
    // useContext,diaryDispatchContext, onDelete(id)
