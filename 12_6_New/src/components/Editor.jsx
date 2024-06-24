@@ -3,29 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "./Editor.css";
 import Button from "./Button";
 import EmotionItem from "./EmotionItem";
+import {emotionList} from "../util/constants"
 
-const emotionList = [
-    {
-        emotionId: 1,
-        emotionName: "개좋아"
-    },
-    {
-        emotionId: 2,
-        emotionName: "쪼앙"
-    },
-    {
-        emotionId: 3,
-        emotionName: "머그래"
-    },
-    {
-        emotionId: 4,
-        emotionName: "아놔"
-    },
-    {
-        emotionId: 5,
-        emotionName: "쓋떠뻑"
-    },
-]
 // input date 에 표시하기 위해서, Date객체 : (targetDate) 를 String 으로 x
 const getStringedDate = (targetDate) => {
     // targetDate객체 -> "2024-12-12" String으로.
