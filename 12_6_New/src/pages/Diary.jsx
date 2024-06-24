@@ -10,19 +10,21 @@ import getStringedDate from "../util/getStringedDate";
 const Diary = () => {
   const params = useParams();
   const nav = useNavigate();
+  const yoil = ["일","월","화","수","목","금","토"];
 
   const curDiaryItem = useDiary(params.id); 
 if (!curDiaryItem) {
   return <div>데이터 로딩중...!</div>
 }
- const title = getStringedDate(new Date(curDiaryItem.createdDate));
+ const title0 = getStringedDate(new Date(curDiaryItem.createdDate));
+ const title = `${title0} (${yoil[new Date(curDiaryItem.createdDate).getDay()]})`;
 return (
   <div>
     <Header title={`${title}`}
      leftChild={<Button text={"< 뒤로"} onClick={()=>nav(-1)} />}
      rightChild={<Button text={"수정"} />}
     />
-    <Viewer id={curDiaryItem.content}/>
+    <Viewer props={curDiaryItem} />
   </div>
 )
 };

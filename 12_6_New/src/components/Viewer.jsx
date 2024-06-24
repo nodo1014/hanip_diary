@@ -2,9 +2,9 @@ import "./Viewer.css";
 import getEmotionImage from "../util/get-emotion-image";
 import {emotionList} from "../util/constants";
 
-const Viewer = ({id}) => {
+const Viewer = ({props}) => {
 
-const emotionId = 5;    //FIXME: emotionId Diary 에서 props 로 받아오기.
+const emotionId = props.emotionId;    //FIXME: emotionId Diary 에서 props 로 받아오기.
 console.log(emotionList);
 const emotionItem = emotionList.find(
     (item)=>String(item.emotionId)===String(emotionId)
@@ -25,7 +25,7 @@ const emotionItem = emotionList.find(
       <section className="content_section">
         <h4>오늘의 일기</h4>
         <div className="content_wrapper">
-            <p>data: {id}</p>
+            <p>data: {props.content}</p>
         </div>
       </section>
 
