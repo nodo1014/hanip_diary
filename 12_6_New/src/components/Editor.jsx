@@ -1,7 +1,8 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Editor.css";
 import Button from "./Button";
 import EmotionItem from "./EmotionItem";
-import "./Editor.css";
-import { useState } from "react";
 
 const emotionList = [
     {
@@ -41,14 +42,24 @@ const getStringedDate = (targetDate) => {
     return `${year}-${month}-${date}`;
 }
 
-function Editor({onSubmit}) {
+function Editor({initData, onSubmit}) {
     // FIXME: 마우스 오버시, 이모션 배경색 변경! EmotionItem.jsx 에 isSelected(true/false) 프롭스 보내서, true 면, 배경색 변경 클래스 추가 
 // 오늘의 날짜 input 처리하기 : Date 객체 <--> String
     const [input, setInput] = useState({
-        createdDate : new Date(),
+        createdDate : new Date(), // 날짜 객체 --> timestamp 값으로 저장.
         emotionId : 3,
-        content : ""
+        content : "",
     });
+    const nav = useNavigate();
+
+    useEffect(() => {
+      if (initData) {
+        setInput({
+          ...initData,
+          createdDate: new Date(Number(initData.createdDate)),
+        });
+      }
+    }, [initData]);
     // 달력 날짜 인풋에서, 날짜를 변경하면 setInput() 으로 createdDate 저장.
     // 다목적 onChangeInput (날짜, 이모션:target생성, content)
     // FIXME: 이모션은 input 이 아니라서, target.name과 value 가 없어서, 따로 추가!
@@ -62,9 +73,9 @@ function Editor({onSubmit}) {
         setInput({
             ...input,
             [name] : value,
-        })
-    }
-    const onClickSubmit = () => {
+        });
+    };
+    const onSubmitButtonClick = () => {
         onSubmit(input);
     };
 
@@ -105,12 +116,13 @@ function Editor({onSubmit}) {
         name="content"
         value={input.content}
         onChange={onChangeInput}
-        placeholder="오늘은 어때쓔? 지금까지와 달라?"></textarea>
+        placeholder="오늘은 어때쓔? 지금까지와 달라?" 
+        />
       </section>
 
       <section className="button_section">
         <Button text={"취소"} type="NEGATIVE" onClick={() => nav(-1)} />
-        <Button text={"저장"} type="POSITIVE" onClick={onClickSubmit} />
+        <Button text={"저장"} type="POSITIVE" onClick={onSubmitButtonClick} />
       </section>
     </div>
   );
